@@ -1,0 +1,40 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int index = 1;
+}
+
+@model List<Employee>
+ <table>
+     <thead>
+         <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Details</th>
+
+            @*<th>Sex</th>
+            <th>Address</th>
+            <th>Salary</th>
+            <th>BirthDate</th>
+            <th>Supervisor</th*@>
+         </tr>
+     </thead>
+     <tbody>
+        @foreach(var employee in Model)
+        {   
+    
+        <tr>
+            <td>@(index++)</td>
+            <td>@(employee.Fname +" "+ employee.Lname +" "+ employee.Minit)</td>
+            <td><a href="/Employee/GetById/@employee.SSN">Details</a></td>
+          @*<td>@employee.Sex</td>
+            <td>@employee.Address</td>
+            <td>@employee.Salary</td>
+            <td>@employee.BirthDate</td>
+            <td>@(employee.Supervisor.Fname + " " + employee.Supervisor.Lname + " " + employee.Supervisor.Minit)</td>
+*@
+         </tr>
+        }
+     </tbody>
+  </table>

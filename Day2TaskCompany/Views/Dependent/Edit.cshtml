@@ -1,0 +1,24 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model Dependent
+
+<form action="/Dependent/EditToDB">
+
+    <label>Name</label>
+    <input id="Name" name="Name" type="text" value="@Model.Name"  hidden/>
+
+    <label>Sex</label>
+    <input id="Sex" name="Sex" type="text" value="@Model.Sex" />
+
+    <label>Birth Date</label>
+    <input id="BirthDate" name="BirthDate" type="datetime" value="@Model.BirthDate" />
+
+    <label>Relationship</label>
+    <input id="Relationship" name="Relationship" type="text" value="@Model.Relationship" />
+
+    <input type="submit" value="Add" />
+</form>

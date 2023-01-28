@@ -1,0 +1,44 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model List<Employee>
+
+<h1>Add New Employee</h1>
+
+<form action="/Employee/AddEmployeeDb">
+
+    <label>First Name</label>
+    <input id="Fname" name="Fname" type="text" />
+
+    <label>Last Name</label>
+    <input id="Lname" name="Lname" type="text" />
+
+    <label>Minit</label>
+    <input id="Minit" name="Minit" type="text" />
+
+    <label>Sex</label>
+    <input id="Male" name="Sex" type="radio" value="Male" />
+    <input id="Female" name="Sex" type="radio" value="Female" />
+
+    <label>Address</label>
+    <input id="Address" name="Address" type="text" />
+
+    <label>Salary</label>
+    <input id="Salary" name="Salary" type="number" />
+
+    <label>Birth Date</label>
+    <input id="BirthDate" name="BirthDate" type="datetime" />
+
+    <label>Supervisor</label>
+    <select id="SupervisorSSN" name="SupervisorSSN">
+        <option value="">Choose instructor</option>
+        @foreach (var employee in Model)
+        {
+            <option value="@employee.SSN">@(employee.Fname+" "+employee.Lname)</option>
+        }
+    </select>
+
+    <input type="submit" value="Add" />
+</form>

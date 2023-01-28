@@ -1,0 +1,17 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model List<Employee>
+
+ @foreach(var item in Model)
+ {
+    <h1>@item.Fname</h1>
+    <h1>@item.Lname</h1>
+    <h1>@item.Sex</h1>
+         <h1>@item.Address</h1>
+    <button type="button"><a href="/project/index/@item.DeptId">Show Projects</a></button>
+         <p>="========================="</p>
+ }

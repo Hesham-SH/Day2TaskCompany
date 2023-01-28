@@ -1,0 +1,21 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <br />
+    <form action="/home/validate">
+
+        <label for="userName">Enter UserName</label>
+        <input id="userName" type="text" name="name"/>
+
+        <label for="userSSN">Enter Your SSN</label>
+        <input id="userSSN" type="text" name="ssn" />
+
+        <input type="submit" value="Log In" />
+    </form>
+
+    <button type="button"><a href="/home/ShowManagers">Show Managers</a></button>
+
+</div>

@@ -1,0 +1,43 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    int index = 1;
+}
+
+@model List<Dependent>
+<table>
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Sex</th>
+            <th>BirthDate</th>
+            <th>Relationship</th>
+            <th>ADD</th>
+            <th>Edit</th>
+            <th>Delete</th>
+
+     
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var dependent in Model)
+        {
+            
+            <tr>
+                <td>@(index++)</td>
+                <td>@dependent.Name</td>
+                <td>@dependent.Sex</td>
+                <td>@dependent.BirthDate</td>
+                <td>@dependent.Relationship</td>
+                <td><a href="/Dependent/Edit/@dependent.Name">Edit</a></td>
+                <td><a href="/Dependent/Delete/@dependent.Name">Delete</a></td>
+
+            </tr>
+        }
+    </tbody>
+    <a href="/Dependent/Add">Add</a>
+</table>
+
+<h6>@TempData["AddMsg"]</h6>
