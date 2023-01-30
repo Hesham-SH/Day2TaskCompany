@@ -1,5 +1,7 @@
 ﻿using Day2TaskCompany.Models;
+using Day2TaskCompany.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.EntityFrameworkCore;
 
 namespace Day2TaskCompany.Controllers
@@ -39,7 +41,7 @@ namespace Day2TaskCompany.Controllers
             return View(DeptProjects);
         }
 
-        public IActionResult AddProject(List<int> id, List<int> secondId, int thirdId)
+        public IActionResult AddProjects(List<int> id, List<int> secondId, int thirdId)
         {
             string entry = "";
             foreach(var item in id)
@@ -64,6 +66,33 @@ namespace Day2TaskCompany.Controllers
             
             
             return Index(thirdId,entry);
+        }
+
+        [HttpGet]
+        public IActionResult AddSingleProject(int id)
+        {
+            return View();
+        }
+
+        [ValidateAntiForgeryToken]
+        [HttpPost]
+        public IActionResult AddSingleProject(ProjectVM project, int id)
+        {
+            string entry = "";
+            if (ModelState.IsValid)
+            {
+                Project project1 = new Project()
+                {
+                    Name = project.Name,
+                    Location = project.Location,
+                    department = id
+                };
+                DB.Projects.Add(project1);
+                DB.SaveChanges();
+                return Index(id, entry);
+            }
+
+            return View();
         }
     }
 }
