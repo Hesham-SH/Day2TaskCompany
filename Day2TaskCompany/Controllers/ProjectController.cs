@@ -2,6 +2,7 @@
 using Day2TaskCompany.ViewModels;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 
 namespace Day2TaskCompany.Controllers
@@ -93,6 +94,26 @@ namespace Day2TaskCompany.Controllers
             }
 
             return View();
+        }
+
+        public IActionResult EditEmpHours()
+        {
+            List<Employee> emps = DB.Employees.Select(E => E).ToList();
+            ViewBag.Emps = new SelectList(emps, "SSN", "Fname");
+            return View();
+        }
+
+        public IActionResult EditEmpHours_Emp(int id)
+        {
+           List<Project> p1 = DB.WorksOnProjects.Include(wop => wop.Project).Where(wop => wop.EmpSSN == id).Select(wop => wop.Project).ToList();
+            ViewBag.EmpProjects = new SelectList(p1, "Number", "Name");
+            return PartialView("_EmpProject");
+        }
+
+        public IActionResult EditEmpHours_ProjHours(int id, int secondId)
+        {
+           WorksOnProject p2 = DB.WorksOnProjects.SingleOrDefault(wop => wop.EmpSSN == id && wop.projNum == secondId);
+            return PartialView("_ProjectHours",p2);
         }
     }
 }

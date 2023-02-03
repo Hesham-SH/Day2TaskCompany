@@ -1,0 +1,11 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+@model WorksOnProject
+
+    <label asp-for="projNum"></label>
+    <select asp-for="projNum" asp-items="@ViewBag.EmpProjects" class="form-control">
+    </select>
