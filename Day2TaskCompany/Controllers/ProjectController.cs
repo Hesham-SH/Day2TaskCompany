@@ -102,7 +102,7 @@ namespace Day2TaskCompany.Controllers
             ViewBag.Emps = new SelectList(emps, "SSN", "Fname");
             return View();
         }
-
+        
         public IActionResult EditEmpHours_Emp(int id)
         {
            List<Project> p1 = DB.WorksOnProjects.Include(wop => wop.Project).Where(wop => wop.EmpSSN == id).Select(wop => wop.Project).ToList();

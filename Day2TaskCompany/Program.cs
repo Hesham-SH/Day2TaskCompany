@@ -1,3 +1,7 @@
+using Day2TaskCompany.Models;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
+
 namespace Day2TaskCompany
 {
     public class Program
@@ -8,6 +12,24 @@ namespace Day2TaskCompany
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            // Add services to the container.
+            builder.Services.AddControllersWithViews();
+            builder.Services.AddDbContext<CompanyDBContext>(options =>
+            {
+                options.UseSqlServer(builder.Configuration.GetConnectionString("myCS"));
+            });
+
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<CompanyDBContext>();
+            builder.Services.Configure<IdentityOptions>(opts =>
+            {
+                opts.Password.RequireNonAlphanumeric = false;
+                opts.Password.RequireDigit = false;
+                opts.Password.RequireLowercase = false;
+                opts.Password.RequireUppercase = false;
+                opts.Password.RequiredLength = 3;
+                opts.User.RequireUniqueEmail = true;
+            });
 
             var app = builder.Build();
 

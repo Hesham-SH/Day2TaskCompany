@@ -1,10 +1,13 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+
 namespace Day2TaskCompany.Models
 {
-    public class CompanyDBContext : DbContext
+    public class CompanyDBContext : IdentityDbContext<ApplicationUser,Employee,int>
     {
+
         public CompanyDBContext()
         {
 
@@ -15,7 +18,7 @@ namespace Day2TaskCompany.Models
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog= CompanyMvc;Integrated Security=True;TrustServerCertificate = True;");
+            optionsBuilder.UseSqlServer("Data Source=.;Initial Catalog= Identity;Integrated Security=True;TrustServerCertificate = True;");
             base.OnConfiguring(optionsBuilder);
         }
 
